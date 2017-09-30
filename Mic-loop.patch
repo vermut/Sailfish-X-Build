@@ -1,0 +1,143 @@
+diff -urx '*.py?' mic-bad/chroot.py mic/chroot.py
+--- mic-bad/chroot.py	2013-11-15 16:27:25.000000000 +0000
++++ mic/chroot.py	2017-09-18 11:34:17.968037465 +0000
+@@ -189,6 +189,17 @@
+         try:
+             if os.readlink(fp) == chrootdir:
+                 pid = int(fp.split("/")[2])
++                msger.debug("Terminating %s" % pid)
++                os.kill(pid, 15)
++        except Exception, e:
++            msger.warning("Failed to terminate %s %s" % (fp, e))
++
++    time.sleep(5)
++
++    for fp in glob.glob("/proc/*/root"):
++        try:
++            if os.readlink(fp) == chrootdir:
++                pid = int(fp.split("/")[2])
+                 msger.debug("Killing %s" % pid)
+                 os.kill(pid, 9)
+         except Exception, e:
+diff -urx '*.py?' mic-bad/imager/baseimager.py mic/imager/baseimager.py
+--- mic-bad/imager/baseimager.py	2013-11-15 16:27:25.000000000 +0000
++++ mic/imager/baseimager.py	2017-09-18 13:11:35.161571246 +0000
+@@ -994,12 +994,10 @@
+                 self._pkgs_urls = pkg_manager.getAllUrls()
+                 self._pkgs_license = pkg_manager.getPkgsLicense()
+                 self.__attachment_packages(pkg_manager)
++                self.postinstall()
+         finally:
+             pkg_manager.close()
+
+-        # hook post install
+-        self.postinstall()
+-
+         # do some clean up to avoid lvm info leakage.  this sucks.
+         for subdir in ("cache", "backup", "archive"):
+             lvmdir = self._instroot + "/etc/lvm/" + subdir
+@@ -1016,8 +1014,9 @@
+         msger.info("Running post scripts ...")
+         if os.path.exists(self._instroot + "/tmp"):
+             shutil.rmtree(self._instroot + "/tmp")
+-        origumask=os.umask(0000)
+-        os.mkdir (self._instroot + "/tmp", 0o1777)
++        origumask = os.umask(0000)
++        os.mkdir(self._instroot + "/tmp", 0o1777)
++        os.umask(origumask)
+         for s in kickstart.get_post_scripts(self.ks):
+             (fd, path) = tempfile.mkstemp(prefix = "ks-script-",
+                                           dir = self._instroot + "/tmp")
+@@ -1059,14 +1058,14 @@
+                                        "with '%s' : %s" % (s.interp, msg))
+             finally:
+                 os.unlink(path)
+-                os.umask(origumask)
+
+         kill_processes(self._instroot)
+
+     def __run_pre_scripts(self):
+         msger.info("Running pre scripts ...")
+-        origumask=os.umask(0000)
+-        os.mkdir (self._instroot + "/tmp", 0o1777)
++        origumask = os.umask(0000)
++        os.mkdir(self._instroot + "/tmp", 0o1777)
++        os.umask(origumask)
+         for s in kickstart.get_pre_scripts(self.ks):
+             (fd, path) = tempfile.mkstemp(prefix = "ks-script-",
+                                           dir = self._instroot + "/tmp")
+@@ -1103,7 +1102,6 @@
+                                        "with '%s' : %s" % (s.interp, msg))
+             finally:
+                 os.unlink(path)
+-                os.umask(origumask)
+
+     def __save_repo_keys(self, repodata):
+         if not repodata:
+diff -urx '*.py?' mic-bad/imager/loop.py mic/imager/loop.py
+--- mic-bad/imager/loop.py	2013-11-15 16:27:25.000000000 +0000
++++ mic/imager/loop.py	2017-09-18 11:34:18.024037842 +0000
+@@ -162,7 +162,7 @@
+                                 subvols.append({'size': 0, # In sectors
+                                                 'mountpoint': item.mountpoint, # Mount relative to chroot
+                                                 'fstype': "btrfs", # Filesystem type
+-                                                'fsopts': "defaults,noatime,subvol=%s" %  item.name, # Filesystem mount options
++                                                'fsopts': "subvol=%s" %  item.name, # Filesystem mount options
+                                                 'device': None, # kpartx device node for partition
+                                                 'mount': None, # Mount object
+                                                 'subvol': item.name, # Subvolume name
+@@ -328,7 +328,7 @@
+                'fsopts': "defaults,noatime" if not p['fsopts'] else p['fsopts']}
+
+             if p['mountpoint'] == "/":
+-                for subvol in p['subvolumes']:
++                for subvol in p.get('subvolumes', []):
+                     if subvol['mountpoint'] == "/":
+                         continue
+                     s += "%(device)s  %(mountpoint)s  %(fstype)s  %(fsopts)s 0 0\n" % {
+diff -urx '*.py?' mic-bad/utils/misc.py mic/utils/misc.py
+--- mic-bad/utils/misc.py	2013-11-15 16:27:25.000000000 +0000
++++ mic/utils/misc.py	2017-09-18 11:34:18.024037842 +0000
+@@ -448,16 +448,19 @@
+     return kickstart_repos
+
+ def _get_uncompressed_data_from_url(url, filename, proxies):
++
+     filename = myurlgrab(url, filename, proxies)
+     suffix = None
+     if filename.endswith(".gz"):
+         suffix = ".gz"
+         runner.quiet(['gunzip', "-f", filename])
++        msger.info("filename %s gunzipped" % filename)
+     elif filename.endswith(".bz2"):
+         suffix = ".bz2"
+         runner.quiet(['bunzip2', "-f", filename])
+     if suffix:
+         filename = filename.replace(suffix, "")
++        msger.info("filename is now %s" % filename)
+     return filename
+
+ def _get_metadata_from_repo(baseurl, proxies, cachedir, reponame, filename,
+@@ -474,7 +477,11 @@
+         sumcmd = "%ssum" % sumtype
+         file_checksum = runner.outs([sumcmd, filename]).split()[0]
+         if file_checksum == checksum:
++            msger.info("%s checksum %s matches cache" % (filename, file_checksum))
+             return filename
++        else:
++            msger.info("%s checksum %s does not match cache, removing it" % (filename, file_checksum))
++            os.unlink(filename)
+     return _get_uncompressed_data_from_url(url,filename_tmp,proxies)
+
+ def get_metadata_from_repos(repos, cachedir):
+diff -urx '*.py?' mic-bad/utils/rpmmisc.py mic/utils/rpmmisc.py
+--- mic-bad/utils/rpmmisc.py	2013-11-15 16:27:25.000000000 +0000
++++ mic/utils/rpmmisc.py	2017-09-18 11:34:18.024037842 +0000
+@@ -58,7 +58,7 @@
+             if e.errno == 14 and e.code in [404, 503] and ignore_404:
+                 return None
+             else:
+-                raise CreatorError("URLGrabber error: %s" % url)
++                raise CreatorError("URLGrabber error: %s - e.errno: %s" % (url,e.errno))
+
+     return filename

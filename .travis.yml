@@ -1,0 +1,11 @@
+dist: trusty
+sudo: required
+
+cache:
+  directories:
+    - $HOME/.cache
+    - $HOME/hadk
+    - $HOME/syspart
+
+script:
+ - bash build.sh

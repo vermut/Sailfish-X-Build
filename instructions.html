@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sailfish X Build and Flash - SailfishOS Documentation</title>
+    <script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+    <script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":!1,"wgNamespaceNumber":0,"wgPageName":"Sailfish_X_Build_and_Flash","wgTitle":"Sailfish X Build and Flash","wgCurRevisionId":988,"wgRevisionId":988,"wgArticleId":220,"wgIsArticle":!0,"wgIsRedirect":!1,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":[],"wgBreakFrames":!1,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Sailfish_X_Build_and_Flash","wgRelevantArticleId":220,"wgIsProbablyEditable":!1,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":!0,"dialogs":!0,"preview":!0,"publish":!0}
+,"wgULSAcceptLanguageList":["en-us","en"],"wgULSCurrentAutonym":"English"});mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","ext.uls.init","ext.uls.interface"]);
+} );</script>
+    <link rel="stylesheet" href="/wiki/load.php?debug=false&amp;lang=en&amp;modules=ext.bootstrap.styles%7Cext.uls.nojs&amp;only=styles&amp;skin=chameleon" />
+    <meta name="ResourceLoaderDynamicStyles" content="" />
+    <link rel="stylesheet" href="/wiki/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=chameleon" />
+    <style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}</style>
+    <script async="" src="/wiki/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=chameleon"></script>
+    <meta name="generator" content="MediaWiki 1.26.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://sailfishos.org/wp-content/themes/sailfishos/icons/favicon-128.png" />
+    <link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="SailfishOS Documentation (en)" />
+    <link rel="EditURI" type="application/rsd+xml" href="https://sailfishos.org/wiki/api.php?action=rsd" />
+    <link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/" />
+    <link rel="alternate" type="application/atom+xml" title="SailfishOS Documentation Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Sailfish_X_Build_and_Flash layout-sailfishos skin-chameleon action-view">
+
+<!-- navigation bar -->
+<nav class="navbar navbar-default p-navbar sticky" role="navigation" id="mw-navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mw-navigation-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+
+            <!-- logo and main page link -->
+            <div id="p-logo" class="p-logo navbar-brand" role="banner">
+                <a href="/wiki/SailfishOS" title="Visit the main page"><svg id="Layer_1" height="40" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.71 27.42"><title>SailfishOS</title><path d="M37.44,11.18A0.36,0.36,0,0,0,37,11l-2.62.93a29.92,29.92,0,0,1-3.48.95,4.7,4.7,0,0,1-4.1-1.54,0.36,0.36,0,0,0-.4-0.1l-0.5.21a15.91,15.91,0,0,1,1.89-5.51,0.36,0.36,0,0,0-.46-0.51,27.69,27.69,0,0,0-4.72,3c-3.21,2.51-5,5.12-5.19,7.75-0.18,2.13,1.18,3.5,2.49,4.83l0.23,0.23a5.34,5.34,0,0,1-.3,4.05,12.41,12.41,0,0,1-7,6.18c-1,.39-1.87.69-1.87,0.69a0.36,0.36,0,0,0,.12.7h0.07a36.3,36.3,0,0,0,7.32-2.7l0.67-.35h0c4.14-2.22,6.36-4.8,6.61-7.66,0.16-1.83-.88-3-2-4.13,1.43-2.07,6.11-3.67,6.16-3.69l4.61-1.65c1.46-.48,2.62-0.93,2.7-1A0.36,0.36,0,0,0,37.44,11.18Zm-12.3.6a11.16,11.16,0,0,0-3.91,3.12A3.73,3.73,0,0,1,21,13.15c0.17-1.95,2.21-4.22,2.53-4.57a28.73,28.73,0,0,1,3.11-2A14.67,14.67,0,0,0,25.14,11.78ZM16.58,30.19a11.85,11.85,0,0,0,3.9-4.67,6.72,6.72,0,0,0,.62-3.28,3.53,3.53,0,0,1,1,2.57c-0.22,2.5-3.2,4.29-3.25,4.32h0C18.06,29.52,17.31,29.87,16.58,30.19ZM25.06,22A7.56,7.56,0,0,1,22,27a4.86,4.86,0,0,0,.77-2.16c0.16-1.88-1.11-3.17-2.35-4.42S18,18,18.13,16.18a9.37,9.37,0,0,1,3-5.54,6.34,6.34,0,0,0-.85,2.45c-0.2,2.32,1.28,3.73,2.58,5S25.21,20.31,25.06,22Zm-1.83-4.57a10.55,10.55,0,0,1-1.62-1.81c1.22-2,4-3.32,4.81-3.66A5.62,5.62,0,0,0,29.6,13.6C28.94,13.84,24.78,15.35,23.24,17.44Z" transform="translate(-10.75 -5.37)"></path></svg></a>
+            </div>
+
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="mw-navigation-collapse">
+            <div class="navbar-right-aligned"><ul class="nav navbar-nav"><li id="menu-item-1896" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1896"><a href="https://sailfishos.org/about/">About</a></li>
+                <li id="menu-item-2351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2351"><a href="https://sailfishos.org/design/">User Experience</a></li>
+                <li id="menu-item-3483" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3483"><a href="https://sailfishos.org/partners/">Partners</a></li>
+                <li id="menu-item-1918" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1918"><a href="https://sailfishos.org/community/">Community</a></li>
+                <li id="menu-item-3901" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3901"><a target="_blank" href="https://sailfishos.org/wiki/SailfishOS">Developers</a></li>
+                <li id="menu-item-3904" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3904"><a href="https://sailfishos.org/sailfishos/contact/">Contact Us</a></li>
+            </ul>
+
+                <!-- page tools -->
+                <ul class="navbar-tools navbar-nav" >
+                    <li class="navbar-tools-tools dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#" title="Page tools" ><span>...</span></a>
+                        <!-- Content navigation -->
+                        <ul class="p-contentnavigation dropdown-menu" id="p-contentnavigation">
+                            <!-- namespaces -->
+                            <li id="ca-talk" class="new"><a href="/wiki/index.php?title=Talk:Sailfish_X_Build_and_Flash&amp;action=edit&amp;redlink=1" rel="discussion" title="Discussion about the content page [t]" accesskey="t" class="new">Discussion</a></li>
+                            <!-- views -->
+                            <li id="ca-viewsource"><a href="/wiki/index.php?title=Sailfish_X_Build_and_Flash&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+                            <li id="ca-history"><a href="/wiki/index.php?title=Sailfish_X_Build_and_Flash&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- search form -->
+                <div  id="p-search" class="p-search navbar-form" role="search"><div class="search-btn"><a href="#" ><span class="glyphicon glyphicon-search"></span></a></div>
+                    <div class="search-floating"><form  id="searchform" class="mw-search form-inline" action="/wiki/index.php">
+                        <input type="hidden" name="title" value="Special:Search" />
+                        <div class="input-group">
+                            <input name="search" placeholder="Search" title="Search SailfishOS Documentation [f]" accesskey="f" id="searchInput" class="form-control" />
+                            <div class="input-group-btn">
+                                <button value="Go" id="searchGoButton" name="go" title="Go to a page with this exact name if it exists" type="submit" class="searchGoButton btn btn-default"><span class="glyphicon glyphicon-share-alt"></span></button>
+                                <button value="Search" id="mw-searchButton" name="fulltext" title="Search the pages for this text" type="submit" class="mw-searchButton btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </div>
+                    </form></div>
+                </div>
+
+                <!-- personal tools -->
+                <ul class="navbar-tools navbar-nav" >
+                    <li class="dropdown navbar-tools-tools">
+                        <a class="dropdown-toggle navbar-usernotloggedin" href="#" data-toggle="dropdown" title="You are not logged in." ><span class="glyphicon glyphicon-user"></span></a>
+                        <ul class="p-personal-tools dropdown-menu dropdown-menu-right" >
+                            <li id="pt-uls" class="active"><a href="#" class="uls-trigger autonym">English</a></li>
+                            <li id="pt-login"><a href="/wiki/index.php?title=Special:UserLogin&amp;returnto=Sailfish+X+Build+and+Flash" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div> <!-- navbar-right-aligned -->
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+    <div class="sidebarpane">
+        <!-- Developing -->
+        <li class="sidebar-header open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developing <b class="caret"></b></a>
+
+            <ul class="sidebar-menu p-Developing" id="p-Developing">
+                <li id="n-Introduction"><a href="/wiki/Guides">Introduction</a></li>
+                <li id="n-App-Development"><a href="/wiki/Application_Development">App Development</a></li>
+                <li id="n-Platform-Development"><a href="/wiki/Platform_Development">Platform Development</a></li>
+                <li id="n-Hardware-Development"><a href="/wiki/Hardware_Adaptation_Development_Kit">Hardware Development</a></li>
+                <li id="n-Collaborating"><a href="/wiki/Collaborative_Development">Collaborating</a></li>
+                <li id="n-Open-Source"><a href="/wiki/Open_Source">Open Source</a></li>
+                <li id="n-Common-Tasks"><a href="/wiki/Common_Development_Tasks">Common Tasks</a></li>
+            </ul>
+        </li>
+        <!-- Reference -->
+        <li class="sidebar-header open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+
+            <ul class="sidebar-menu p-Reference" id="p-Reference">
+                <li id="n-Introduction-fk7q3e1b60"><a href="/wiki/Reference">Introduction</a></li>
+                <li id="n-Architecture"><a href="/wiki/Architecture">Architecture</a></li>
+                <li id="n-Software-Packaging"><a href="/wiki/Software_Packaging">Software Packaging</a></li>
+                <li id="n-Security"><a href="/wiki/Security">Security</a></li>
+                <li id="n-Internationalisation-and-Localisation"><a href="/wiki/Internationalisation_and_Localisation">Internationalisation and Localisation</a></li>
+                <li id="n-Qt"><a href="/wiki/Qt">Qt</a></li>
+                <li id="n-Core-Areas-.26-APIs"><a href="/wiki/Core_Areas_and_APIs">Core Areas &amp; APIs</a></li>
+                <li id="n-Toolchain"><a href="/wiki/Toolchain">Toolchain</a></li>
+                <li id="n-Android-Compatibility"><a href="/wiki/Android_Compatibility">Android Compatibility</a></li>
+            </ul>
+        </li>
+        <!-- Tools -->
+        <li class="sidebar-header open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <b class="caret"></b></a>
+
+            <ul class="sidebar-menu p-Tools" id="p-Tools">
+                <li id="n-Introduction-fk7q3e1iqh"><a href="/wiki/Tools">Introduction</a></li>
+                <li id="n-Application-SDK"><a href="/wiki/Application_SDK">Application SDK</a></li>
+                <li id="n-Platform-SDK"><a href="/wiki/Platform_SDK">Platform SDK</a></li>
+                <li id="n-Hardware-SDK"><a href="/wiki/Hardware_Adaptation_Development_Kit">Hardware SDK</a></li>
+                <li id="n-Other-development-tools"><a href="/wiki/Tools#Development_tools">Other development tools</a></li>
+            </ul>
+        </li>
+        <!-- Hardware -->
+        <li class="sidebar-header open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hardware <b class="caret"></b></a>
+
+            <ul class="sidebar-menu p-Hardware" id="p-Hardware">
+                <li id="n-Introduction-fk7q3e1n9a"><a href="/wiki/Hardware">Introduction</a></li>
+                <li id="n-HW-Adaptation-Kit"><a href="/wiki/Hardware_Adaptation_Development_Kit">HW Adaptation Kit</a></li>
+                <li id="n-Device-Information"><a href="/wiki/Devices">Device Information</a></li>
+            </ul>
+        </li>
+        <!-- Development Services -->
+        <li class="sidebar-header open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Development Services <b class="caret"></b></a>
+
+            <ul class="sidebar-menu p-Development Services" id="p-Development Services">
+                <li id="n-Introduction-fk7q3e1q0n"><a href="/wiki/Development_Systems">Introduction</a></li>
+                <li id="n-Open-Build-Service"><a href="/wiki/Open_Build_Service">Open Build Service</a></li>
+                <li id="n-Git-Server"><a href="/wiki/Git_Server">Git Server</a></li>
+                <li id="n-Image-Creator"><a href="/wiki/Image_Creator">Image Creator</a></li>
+                <li id="n-Webhooks"><a href="/wiki/Webhooks">Webhooks</a></li>
+                <li id="n-Bugzilla"><a href="/wiki/Bugzilla">Bugzilla</a></li>
+            </ul>
+        </li>
+        <!-- Deployment Services -->
+        <li class="sidebar-header open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Deployment Services <b class="caret"></b></a>
+
+            <ul class="sidebar-menu p-Deployment Services" id="p-Deployment Services">
+                <li id="n-SSU"><a href="/wiki/SSU">SSU</a></li>
+                <li id="n-Store"><a href="/wiki/Store">Store</a></li>
+            </ul>
+        </li>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+
+            <!-- start the content area -->
+            <div id="content" class="mw-body"><a id="top"></a>
+                <div id="mw-indicators" class="mw-indicators"></div>
+                <div  id="mw-js-message" style="display:none;"></div>
+                <div class ="contentHeader">
+                    <!-- title of the page -->
+                    <h1 id="firstHeading" class="firstHeading">Sailfish X Build and Flash</h1>
+                    <!-- tagline; usually goes something like "From WikiName" primary purpose of this seems to be for printing to identify the source of the content -->
+                    <div id="siteSub">From SailfishOS Documentation</div><div id="jump-to-nav" class="mw-jump">Jump to:<a href="#mw-navigation">navigation</a>, <a href="#p-search">search</a></div>
+                </div>
+                <div id="bodyContent">
+                    <!-- body text -->
+
+                    <div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+                        <ul>
+                            <li class="toclevel-1 tocsection-1"><a href="#Sailfish_OS_Hardware_Adaptation_Development_Kit_for_Sony_Xperia_X"><span class="tocnumber">1</span> <span class="toctext">Sailfish OS Hardware Adaptation Development Kit for Sony Xperia X</span></a>
+                                <ul>
+                                    <li class="toclevel-2 tocsection-2"><a href="#ChangeLog"><span class="tocnumber">1.1</span> <span class="toctext">ChangeLog</span></a></li>
+                                    <li class="toclevel-2 tocsection-3"><a href="#Building"><span class="tocnumber">1.2</span> <span class="toctext">Building</span></a></li>
+                                    <li class="toclevel-2 tocsection-4"><a href="#Flashing_.28transitory_period.21.29"><span class="tocnumber">1.3</span> <span class="toctext">Flashing (transitory period!)</span></a>
+                                        <ul>
+                                            <li class="toclevel-3 tocsection-5"><a href="#If_flash.sh_fails_with_.22You_have_too_old_Sony_Android_version_.28X.Y.29_on_your_device.22"><span class="tocnumber">1.3.1</span> <span class="toctext">If flash.sh fails with "You have too old Sony Android version (X.Y) on your device"</span></a>
+                                                <ul>
+                                                    <li class="toclevel-4 tocsection-6"><a href="#The_Linux_Way"><span class="tocnumber">1.3.1.1</span> <span class="toctext">The Linux Way</span></a></li>
+                                                    <li class="toclevel-4 tocsection-7"><a href="#Windows"><span class="tocnumber">1.3.1.2</span> <span class="toctext">Windows</span></a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="toclevel-2 tocsection-8"><a href="#Recovery_Mode"><span class="tocnumber">1.4</span> <span class="toctext">Recovery Mode</span></a></li>
+                                    <li class="toclevel-2 tocsection-9"><a href="#Adaptation_Status"><span class="tocnumber">1.5</span> <span class="toctext">Adaptation Status</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                        <h1><span class="mw-headline" id="Sailfish_OS_Hardware_Adaptation_Development_Kit_for_Sony_Xperia_X">Sailfish OS Hardware Adaptation Development Kit for Sony Xperia X</span></h1>
+                        <p>Here you will find instructions how to build Sailfish OS image and flash it to Sony Xperia X (F5121) device.
+                        </p>
+                        <h2><span class="mw-headline" id="ChangeLog">ChangeLog</span></h2>
+                        <ul><li> 2017-09-29: Bluetooth is now enabled, you are welcome to test its profiles and fix up as many as you can (ping <code>jusa</code> in IRC for guidance).<br />Browser video playback fixed.<br />Camera video recording fixed.<br />General performance boosted by enabling all 6 CPU cores.</li>
+                            <li> 2017-09-26: droid-configs has been updated to fix the <code>nothing provides requested droid-hal-version-f5121</code> error</li>
+                            <li> 2017-09-23: Starting with HADK v2.0.1, using Platform SDK Target version 2.1.1 is now in force (this also fixes GPS on Sailfish X). You can either rebuild from ground up, or remove your target like so:</li></ul>
+                        <pre>PLATFORM_SDK $
+sdk-assistant remove $VENDOR-$DEVICE-$PORT_ARCH
+# Then go through chapter 6 of HADK &gt;=2.0.1, and all the $PLATFORM_SDK snippets of this wiki again
+</pre>
+                        <h2><span class="mw-headline" id="Building">Building</span></h2>
+                        <p>Please download the latest Sailfish OS HADK (Hardware Adaptation Development Kit) from within <a rel="nofollow" class="external text" href="https://sailfishos.org/hadk">this link</a>.
+                        </p><p>If you have used HADK v1.9.9 before and have it already setup, please install newly required packages to your HABUILD_SDK environment in section 4.4.2. If you used v1.2.0 or older, you'll need to start from scratch with HADK v2.
+                        </p><p><br />
+                            If you are new to HADK, please carefully read the disclaimer on page 1, then chapters 1 and 2.
+                        </p><p>The disk space requirement for this build is not 16GB as HADK says, but around 80GB. The download bandwidth requirement is around 20GB, but can be reduced to half as much if you add <code>--depth=10</code> to each <code>repo init</code> command and <code>--current-branch</code> to each <code>repo sync</code> throughout this guide below.
+                        </p><p><br />
+                            HADK uses CyanogenMod as reference base. Here we'll instead have Sony's stock Android (6.0.1 or 7.x) – these are the versions that are supported by Sailfish X and need to be flashed to your Sony before flashing Sailfish OS image. Now you can read through chapter 3.
+                        </p><p><br />
+                            If you ever run into difficulties, we're there to help in the <a rel="nofollow" class="external text" href="http://webchat.freenode.net/?channels=#sailfishos-porters">#sailfishos-porters</a> channel on IRC at Freenode.
+                        </p><p><br />
+                            In chapter 4 (<i>Setting up the SDKs</i>) setup the environment with <code>VENDOR="sony"</code> and <code>DEVICE="f5121"</code> variables. Also please add <code>HABUILD_DEVICE="suzu"</code> next to them in the ~/.hadk.env
+                        </p><p><br />
+                            Follow through the chapter 4 until the end, and ignore chapter 5, instead perform the following:
+                        </p>
+                        <pre>PLATFORM_SDK $
+
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+ubu-chroot -r /parentroot/$PLATFORM_SDK_ROOT/sdks/ubuntu
+</pre>
+                        <p>At this point, install Android's repo tool: <a rel="nofollow" class="external free" href="https://source.android.com/source/downloading#installing-repo">https://source.android.com/source/downloading#installing-repo</a>. Then
+                        </p>
+                        <pre>HABUILD_SDK $
+
+sudo mkdir -p $ANDROID_ROOT
+sudo chown -R $USER $ANDROID_ROOT
+cd $ANDROID_ROOT
+repo init -u <a rel="nofollow" class="external free" href="git://github.com/mer-hybris/android.git">git://github.com/mer-hybris/android.git</a> -b hybris-sony-aosp-6.0.1_r80-20170902
+# Adjust X to your bandwidth capabilities
+repo sync -jX
+(cd rpm; git submodule init; git submodule update)
+source build/envsetup.sh
+# Please download Sony Xperia X Software binaries for AOSP Marshmallow (Android 6.0.1) from
+# <a rel="nofollow" class="external free" href="https://developer.sonymobile.com/downloads/tool/software-binaries-for-aosp-marshmallow-6-0-1-loire/">https://developer.sonymobile.com/downloads/tool/software-binaries-for-aosp-marshmallow-6-0-1-loire/</a>
+# and unzip its contents in this directory like this:
+unzip ~/Downloads/SW_binaries_for_Xperia_AOSP_*.zip
+export USE_CCACHE=1
+lunch aosp_$DEVICE-userdebug
+# Adjust XX to your building capabilities
+make -jXX hybris-hal
+</pre>
+                        <p>If you encounter errors, check with HADK's section 5.5 "Common Pitfalls", and if it's not there, ask us on IRC.
+                        </p><p><br />
+                            Once you have hybris-boot.img and hybris-recovery.img files successfully built, go through chapter 6 of the HADK document.
+                        </p><p><br />
+                            Ignore chapter 7, but do the following instead:
+                        </p>
+                        <pre>PLATFORM_SDK $
+
+cd $ANDROID_ROOT
+rpm/dhd/helpers/build_packages.sh --droid-hal
+git clone --recursive <a rel="nofollow" class="external free" href="https://github.com/mer-hybris/droid-config-$DEVICE">https://github.com/mer-hybris/droid-config-$DEVICE</a> hybris/droid-configs -b mer1821
+if [ -z "$(grep community_adaptation $ANDROID_ROOT/hybris/droid-configs/rpm/droid-config-$DEVICE.spec)" ]; then
+  sed -i '/%include droid-configs-device/i%define community_adaptation 1\n' $ANDROID_ROOT/hybris/droid-configs/rpm/droid-config-$DEVICE.spec
+fi
+if [ -z "$(grep patterns-sailfish-consumer-generic $ANDROID_ROOT/hybris/droid-configs/patterns/jolla-configuration-$DEVICE.yaml)" ]; then
+  sed -i "/Summary: Jolla Configuration $DEVICE/i- patterns-sailfish-consumer-generic\n- patterns-sailfish-store-applications\n- pattern:sailfish-porter-tools\n" $ANDROID_ROOT/hybris/droid-configs/patterns/jolla-configuration-$DEVICE.yaml
+fi
+rpm/dhd/helpers/build_packages.sh --configs
+</pre>
+                        <p>Open new terminal window shell and enter:
+                        </p>
+                        <pre>HABUILD_SDK $
+
+sudo apt-get install rsync
+cd $ANDROID_ROOT/..
+mkdir syspart
+cd syspart
+repo init -u <a rel="nofollow" class="external free" href="git://github.com/mer-hybris/android.git">git://github.com/mer-hybris/android.git</a> -b syspart-sony-aosp-6.0.1_r80-20170902
+# Adjust X to your bandwidth capabilities
+repo sync -jX --fetch-submodules
+source build/envsetup.sh
+unzip ~/Downloads/SW_binaries_for_Xperia_AOSP_*.zip
+export USE_CCACHE=1
+lunch aosp_$DEVICE-userdebug
+# Adjust XX to your building capabilities, it will be very heavy on RAM if you go for more cores, proceed with care:
+make -jXX  libnfc-nci bluetooth.default_32 systemtarball
+# Go and have a cuppa, as this is going to take some time&#160;:)
+</pre>
+                        <pre>PLATFORM_SDK $
+
+cd $ANDROID_ROOT/../syspart
+git clone <a rel="nofollow" class="external free" href="https://github.com/mer-hybris/droid-system-$DEVICE">https://github.com/mer-hybris/droid-system-$DEVICE</a>
+mb2 -t $VENDOR-$DEVICE-$PORT_ARCH -s droid-system-$DEVICE/rpm/droid-system-$DEVICE.spec build
+rm -f $ANDROID_ROOT/droid-local-repo/$DEVICE/droid-system-*.rpm
+mv RPMS/droid-system-$DEVICE-0.1.1-1.armv7hl.rpm $ANDROID_ROOT/droid-local-repo/$DEVICE/
+createrepo "$ANDROID_ROOT/droid-local-repo/$DEVICE"
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -m sdk-install -R zypper ref
+</pre>
+                        <p>Close the current terminal window, go back to previous window and wait until middleware finished building (if not already), then:
+                        </p>
+                        <pre>HABUILD_SDK $
+ 
+cd $ANDROID_ROOT
+git clone <a rel="nofollow" class="external free" href="https://github.com/mer-hybris/audioflingerglue">https://github.com/mer-hybris/audioflingerglue</a> external/audioflingerglue
+git clone <a rel="nofollow" class="external free" href="https://github.com/sailfishos/droidmedia">https://github.com/sailfishos/droidmedia</a> external/droidmedia
+
+source build/envsetup.sh
+lunch aosp_$DEVICE-userdebug
+make -jXX libdroidmedia_32 minimediaservice minisfservice libaudioflingerglue_32 miniafservice
+</pre>
+                        <pre>PLATFORM_SDK $
+
+cd $ANDROID_ROOT
+rpm/dhd/helpers/build_packages.sh --mw # select "all" option when asked
+DROIDMEDIA_VERSION=$(git --git-dir external/droidmedia/.git describe --tags | sed -r "s/\-/\+/g")
+DEVICE=$HABUILD_DEVICE rpm/dhd/helpers/pack_source_droidmedia-localbuild.sh $DROIDMEDIA_VERSION
+mkdir -p hybris/mw/droidmedia-localbuild/rpm
+cp rpm/dhd/helpers/droidmedia-localbuild.spec hybris/mw/droidmedia-localbuild/rpm/droidmedia.spec
+sed -ie "s/0.0.0/$DROIDMEDIA_VERSION/" hybris/mw/droidmedia-localbuild/rpm/droidmedia.spec
+mv hybris/mw/droidmedia-$DROIDMEDIA_VERSION.tgz hybris/mw/droidmedia-localbuild
+rpm/dhd/helpers/build_packages.sh --build=hybris/mw/droidmedia-localbuild
+rpm/dhd/helpers/build_packages.sh --mw=<a rel="nofollow" class="external free" href="https://github.com/sailfishos/gst-droid.git">https://github.com/sailfishos/gst-droid.git</a>
+
+DEVICE=$HABUILD_DEVICE rpm/dhd/helpers/pack_source_audioflingerglue-localbuild.sh
+mkdir -p hybris/mw/audioflingerglue-localbuild/rpm
+cp rpm/dhd/helpers/audioflingerglue-localbuild.spec hybris/mw/audioflingerglue-localbuild/rpm/audioflingerglue.spec
+mv hybris/mw/audioflingerglue-0.0.1.tgz hybris/mw/audioflingerglue-localbuild
+rpm/dhd/helpers/build_packages.sh --build=hybris/mw/audioflingerglue-localbuild
+rpm/dhd/helpers/build_packages.sh --mw=<a rel="nofollow" class="external free" href="https://github.com/mer-hybris/pulseaudio-modules-droid-glue.git">https://github.com/mer-hybris/pulseaudio-modules-droid-glue.git</a>
+
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -m sdk-install -R zypper in droid-hal-$DEVICE-kernel
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -m sdk-install -R zypper in --force-resolution droid-hal-$DEVICE-kernel-modules
+rpm/dhd/helpers/build_packages.sh --mw=<a rel="nofollow" class="external free" href="https://github.com/sailfishos/initrd-helpers">https://github.com/sailfishos/initrd-helpers</a>
+rpm/dhd/helpers/build_packages.sh --mw=<a rel="nofollow" class="external free" href="https://github.com/nemomobile/hw-ramdisk">https://github.com/nemomobile/hw-ramdisk</a>
+rpm/dhd/helpers/build_packages.sh --mw=<a rel="nofollow" class="external free" href="https://github.com/sailfishos/yamui">https://github.com/sailfishos/yamui</a>
+git clone --recursive <a rel="nofollow" class="external free" href="https://github.com/mer-hybris/droid-hal-img-boot-$DEVICE">https://github.com/mer-hybris/droid-hal-img-boot-$DEVICE</a> hybris/mw/droid-hal-img-boot-$DEVICE
+rpm/dhd/helpers/build_packages.sh --mw=<a rel="nofollow" class="external free" href="https://github.com/mer-hybris/droid-hal-img-boot-$DEVICE">https://github.com/mer-hybris/droid-hal-img-boot-$DEVICE</a>
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -R zypper in  --force-resolution bluez5-libs-devel
+rpm/dhd/helpers/build_packages.sh --mw=<a rel="nofollow" class="external free" href="https://github.com/mer-hybris/bluetooth-rfkill-event">https://github.com/mer-hybris/bluetooth-rfkill-event</a> --spec=rpm/bluetooth-rfkill-event-hciattach.spec
+
+git clone --recursive <a rel="nofollow" class="external free" href="https://github.com/mer-hybris/droid-hal-version-$DEVICE">https://github.com/mer-hybris/droid-hal-version-$DEVICE</a> hybris/droid-hal-version-$DEVICE
+rpm/dhd/helpers/build_packages.sh --version
+</pre>
+                        <p>Now go through chapter 8, but instead of the `sudo mic create fs ...` command, perform the following:
+                        </p>
+                        <ul><li> Save the contents of <a href="/wiki/Mic-loop.patch" title="Mic-loop.patch">Mic-loop.patch</a> as ~/Downloads/mic-loop.patch</li></ul>
+                        <pre>PLATFORM_SDK $
+
+RELEASE=2.1.1.26 # if your sb2 target is 2.1.0, remove it and add 2.1.1 one (check HADK v2.0.1 for link)
+sudo zypper in lvm2 atruncate pigz
+sudo ssu ar unbreakmic <a rel="nofollow" class="external free" href="http://repo.merproject.org/obs/home:/sledge:/branches:/mer-tools:/devel/latest_i486/">http://repo.merproject.org/obs/home:/sledge:/branches:/mer-tools:/devel/latest_i486/</a>
+sudo zypper ref unbreakmic
+sudo zypper in droid-tools
+sudo zypper in --force mic
+cd /usr/lib/python2.7/site-packages/mic/
+sudo patch -p1 --dry-run &lt; ~/Downloads/mic-loop.patch
+# ensure above worked, then
+sudo patch -p1 &lt; ~/Downloads/mic-loop.patch
+cd $ANDROID_ROOT
+sudo mic create loop --arch=$PORT_ARCH \
+    --tokenmap=ARCH:$PORT_ARCH,RELEASE:$RELEASE,EXTRA_NAME:$EXTRA_NAME \
+    --record-pkgs=name,url     --outdir=sfe-$DEVICE-$RELEASE$EXTRA_NAME \
+    $ANDROID_ROOT/Jolla-@RELEASE@-$DEVICE-@ARCH@.ks
+</pre>
+                        <p>If you want to rebuild your image again later, umount any <code>/var/tmp/mic/imgcreate-*/</code> mounts manually.
+                        </p>
+                        <h2><span class="mw-headline" id="Flashing_.28transitory_period.21.29">Flashing (transitory period!)</span></h2>
+                        <pre>PLATFORM_SDK $   # continue from above mic session
+
+mkdir flashing
+cd flashing
+tar -xvf $ANDROID_ROOT/sfe-$DEVICE-$RELEASE$EXTRA_NAME/SailfishOS-*.zip
+cd SailfishOS-*/
+</pre>
+                        <p>Download Sony vendor zip archive from <a rel="nofollow" class="external free" href="https://developer.sonymobile.com/downloads/tool/software-binaries-for-aosp-marshmallow-6-0-1-loire/">https://developer.sonymobile.com/downloads/tool/software-binaries-for-aosp-marshmallow-6-0-1-loire/</a> and place it in current directory, then (NB: this lengthy snippet below will be no longer needed once vendor image is hosted officially):
+                        </p>
+                        <pre>git clone <a rel="nofollow" class="external free" href="https://android.googlesource.com/platform/system/extras">https://android.googlesource.com/platform/system/extras</a>
+cd extras/ext4_utils
+git checkout 67bf7cb2c7487b2a93af8e2d9903842e8fe51f69 -b no-android-deps
+gcc [^se]*.c sha1.c sparse_crc32.c ext4_utils.c extent.c -o make_ext4fs -lz
+cd -
+cp extras/ext4_utils/make_ext4fs .
+rm -rf extras tmp
+mkdir tmp
+BLOBS=$(ls -1 SW_binaries_for_Xperia_AOSP_*_loire.zip | tail -n1)
+unzip $BLOBS -d tmp
+chmod +x tmp/vendor/sony/loire-common/proprietary/vendor/bin/*
+chmod +x ./make_ext4fs
+./make_ext4fs -l 230M vendor_loire_selfgenerated.img tmp/vendor/sony/loire-common/proprietary/vendor
+# act upon instructions in the flashing-README.txt, then:
+bash ./flash.sh
+</pre>
+                        <h3><span class="mw-headline" id="If_flash.sh_fails_with_.22You_have_too_old_Sony_Android_version_.28X.Y.29_on_your_device.22">If flash.sh fails with "You have too old Sony Android version (X.Y) on your device"</span></h3>
+                        <p>You now have two alternatives: the Linux way or Windows.
+                        </p>
+                        <h4><span class="mw-headline" id="The_Linux_Way">The Linux Way</span></h4>
+                        <pre>cd $ANDROID_ROOT/flashing
+MATCH='You have too old Sony Android version ($VMAJOR.$VMINOR) on your device,'
+LINE=$(grep -n "$MATCH" flash.sh | sed 's/:.*//')
+if [ -n $LINE ]; then
+  sed -i "$(($LINE+1)),$(($LINE+3)) d" flash.sh
+  sed -i "s/$MATCH/Your Sony Android version is too old, but we'll workaround that via Linux cmdline/" flash.sh
+else
+  echo Ensure you are using droid-configs from the build instructions above (same branch/up-to-date), then:
+  echo cp $ANDROID_ROOT/hybris/droid-configs/sparse/boot/flash.sh .
+  echo And restart this section from its beginning above ^ (cd $ANDROID_ROOT/flashing etc)
+fi
+sed -i 's/$FLASHCMD oem $BLOBS/$FLASHCMD cache $BLOBS/' flash.sh
+bash ./flash.sh
+</pre>
+                        <p>Now enter <a href="/wiki/Sailfish_X_Build_and_Flash#Recovery_Mode" title="Sailfish X Build and Flash">Sailfish_X_Build_and_Flash#Recovery_Mode</a> and shell into the device, then:
+                        </p>
+                        <pre>mkdir oem
+mount /dev/mmcblk0p28 oem
+mkdir cache
+mount /dev/mmcblk0p24 cache
+rm -rf oem/*
+cp -ar cache/* oem
+umount oem
+umount cache
+rmdir oem cache
+exit
+</pre>
+                        <p>Now reboot the device and you should have Sailfish OS booting normally.
+                        </p>
+                        <h4><span class="mw-headline" id="Windows">Windows</span></h4>
+                        <ul><li> Download the Emma tool - <a rel="nofollow" class="external free" href="https://developer.sonymobile.com/open-devices/flash-tool/how-to-download-and-install-the-flash-tool/">https://developer.sonymobile.com/open-devices/flash-tool/how-to-download-and-install-the-flash-tool/</a></li>
+                            <li> Install the Emma tool</li>
+                            <li> Connect phone to your computer with USB cable, while holding volume down and then green LED light should be lit on the top speaker</li>
+                            <li> Update your device to at least to Android version x-x_34.3.x.x.x with the Emma tool.<br />NOTE: The download size can be 2.5G and take tens of minutes to download so go and get some coffee in the mean while</li></ul>
+                        <p>Go back to your Linux installation where you left off previously, and redo:
+                        </p>
+                        <pre># act upon instructions in the flashing-README.txt, then:
+bash ./flash.sh
+</pre>
+                        <h2><span class="mw-headline" id="Recovery_Mode">Recovery Mode</span></h2>
+                        <p>If anything goes not according to plan, you can boot the device into fastboot (VolumeUp+Power) and execute this command:
+                        </p>
+                        <pre>PLATFORM_SDK $
+
+sudo fastboot boot $ANDROID_ROOT/hybris/mw/droid-hal-img-boot-f5121/installroot/boot/hybris-recovery.img
+</pre>
+                        <p>Then follow instructions on screen to SSH into your device recovery mode. Further steps will depend on what you want to achieve, mainly guided by our IRC channel.
+                        </p><p><br />
+                        </p>
+                        <h2><span class="mw-headline" id="Adaptation_Status">Adaptation Status</span></h2>
+                        <p>The port is pretty functional, but help from you is always appreciated in these areas:
+                        </p>
+                        <ul><li> Fingerterm input is very slow (fix available, ask on IRC or wait for the next Sailfish OS update). In the meantime, please try:</li></ul>
+                        <pre>devel-su zypper ref adaptation-community-common
+devel-su zypper install literm
+</pre>
+                        <ul><li> Sensors not working: fingerprint, barometer, step counter</li>
+                            <li> Internet sharing (tethering) does not work, here's a workaround (monich on IRC knows more)</li></ul>
+                        <pre>devel-su
+echo 2 &gt; /sys/module/bcmdhd/parameters/op_mode 
+echo "/system/etc/firmware/fw_bcmdhd_apsta.bin" &gt; /sys/module/bcmdhd/parameters/firmware_path
+# Switch WLAN off in Settings or Shortcuts in Events View, afterwards turn Internet Sharing on and:
+ip link set dev wlan0 master tether
+</pre>
+                        <p>To revert:
+                        </p>
+                        <pre>echo 0 &gt; /sys/module/bcmdhd/parameters/op_mode
+echo "/system/etc/firmware/fw_bcmdhd.bin" &gt; /sys/module/bcmdhd/parameters/firmware_path
+# Switch WLAN back on in Settings or Shortcuts in Events View
+</pre>
+                        <ul><li> Switching some ambiences or editing gallery photos crashes (solution is to build the latest <a rel="nofollow" class="external text" href="https://git.merproject.org/mer-core/exempi">exempi</a> or wait for the next Sailfish OS update)</li>
+                            <li> Double-tap to wake is deactivated. Activate it and help testing in various scenarios by:</li></ul>
+                        <pre>mcetool --set-doubletap-wakeup=proximity
+</pre>
+                        <ul><li> FM radio missing (solution is known by community)</li>
+                            <li> No big.LITTLE technology is currently enabled, Sailfish OS simply fills up the cores in sequence (from 0 to 3 little, then the bigs ones 4 and 5).<br />This means there's no special allocation of the two performance cores for the foreground apps, because we can't allocate PIDs to the foreground sets. And even if we could, we'd have to add the root process for foreground apps (SFOS booster/invoker?) into there so its children would live on the fast cores. Ping abranson on IRC if you want to chip in, or wait for Android 7 (and kernel v4.4 automatically handling all that much better).</li>
+                            <li> <code>pkcon install-local somepackage</code> does not work as it is reading the wrong architecture. Commands <code>rpm -ivh somefile.rpm</code> or <code>zypper in somefile.rpm</code> do work. Solution will be available in the next Sailfish OS update</li>
+                            <li> Startup Wizard skips one blank page (where usually the Android Support is)</li></ul>
+                        <p>If you find more things to fix, please report them in our IRC channel or file a <a rel="nofollow" class="external text" href="https://bugs.merproject.org/enter_bug.cgi?product=Mer%20Hybris&amp;Bugzilla_restrictlogin=on&amp;GoAheadAndLogIn=Log%20in&amp;component=Sony%20Xperia%20X">bug</a>.
+                        </p><p><br />
+                            <br />Have fun and enjoy our first fully-flashable Sailfish OS image built entirely by you!<br />
+                            Your Jolla HW Team
+                        </p>
+                        <!--
+                        NewPP limit report
+                        Cached time: 20171005090054
+                        Cache expiry: 86400
+                        Dynamic content: false
+                        CPU time usage: 0.020 seconds
+                        Real time usage: 0.024 seconds
+                        Preprocessor visited node count: 34/1000000
+                        Preprocessor generated node count: 40/1000000
+                        Post‐expand include size: 0/2097152 bytes
+                        Template argument size: 0/2097152 bytes
+                        Highest expansion depth: 2/40
+                        Expensive parser function count: 0/100
+                        -->
+
+                        <!--
+                        Transclusion expansion time report (%,ms,calls,template)
+                        100.00%    0.000      1 - -total
+                        -->
+
+                        <!-- Saved in parser cache with key www_sailfishos_org_mediawiki:pcache:idhash:220-0!*!0!!en!*!* and timestamp 20171005090054 and revision id 988
+                         -->
+                    </div><div class="printfooter">
+                    Retrieved from "<a dir="ltr" href="https://sailfishos.org/wiki/index.php?title=Sailfish_X_Build_and_Flash&amp;oldid=988">https://sailfishos.org/wiki/index.php?title=Sailfish_X_Build_and_Flash&amp;oldid=988</a>"</div>
+
+                    <!-- end body text -->
+                </div>
+                <!-- category links -->
+                <div id='catlinks' class='catlinks catlinks-allhidden'></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    </div>
+</div><script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.loader.state({"user":"ready","user.groups":"ready"});mw.loader.load(["mediawiki.toc","mediawiki.action.view.postEdit","site","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.uls.pt","ext.bootstrap.scripts","skin.chameleon.jquery-sticky"]);
+} );</script>
+<script src="//meta.wikimedia.org/geoiplookup"></script>
+<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {
+mw.config.set({"wgBackendResponseTime":715});
+} );</script></body>
+</html>
