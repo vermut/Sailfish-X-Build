@@ -42,8 +42,10 @@ source build/envsetup.sh
 # https://developer.sonymobile.com/downloads/tool/software-binaries-for-aosp-marshmallow-6-0-1-loire/
 # and unzip its contents in this directory like this:
 # unzip ~/Downloads/SW_binaries_for_Xperia_AOSP_*.zip
-[ -f $HOME/.cache/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip ] || wget 'https://developer.sonymobile.com/endpoints/cloudfront/create/?nonce=cc09b879ab&source=https://dl.developer.sonymobile.com/eula/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire_EULA.html&url=https://dl.developer.sonymobile.com/eula/restricted/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip' -O $HOME/.cache/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip
-unzip -o $HOME/.cache/SW_binaries_for_Xperia_AOSP_*.zip
+NONCE=a7c7bf8bfa
+AOSP_FILE=$HOME/.cache/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip
+file $AOSP_FILE | grep -q 'Zip archive' || rm $AOSP_FILE ; wget "https://developer.sonymobile.com/endpoints/cloudfront/create/?nonce=${NONCE}&source=https://dl.developer.sonymobile.com/eula/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire_EULA.html&url=https://dl.developer.sonymobile.com/eula/restricted/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip" -O $AOSP_FILE
+unzip -o $AOSP_FILE
 
 export USE_CCACHE=1
 lunch aosp_$DEVICE-userdebug

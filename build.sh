@@ -4,6 +4,7 @@ if [ -d /vagrant ] ; then
     export IS_VAGRANT=1
     mkdir -p $HOME/.cache
     cp -f /vagrant/chapter* /vagrant/*.patch ~/
+    cp -f SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip $HOME/.cache/
 fi
 
 echo 4.1 Setting up required environment variables
