@@ -31,7 +31,7 @@ echo all | rpm/dhd/helpers/build_packages.sh --mw=https://github.com/sailfishos/
     git clone --recursive https://github.com/mer-hybris/droid-hal-img-boot-$DEVICE hybris/mw/droid-hal-img-boot-$DEVICE
 echo all | rpm/dhd/helpers/build_packages.sh --mw=https://github.com/mer-hybris/droid-hal-img-boot-$DEVICE
 
-sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -R zypper in  --force-resolution bluez5-libs-devel
+sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -R zypper -n in  --force-resolution bluez5-libs-devel
 echo all | rpm/dhd/helpers/build_packages.sh --mw=https://github.com/mer-hybris/bluetooth-rfkill-event --spec=rpm/bluetooth-rfkill-event-hciattach.spec
 
 git clone --recursive https://github.com/mer-hybris/droid-hal-version-$DEVICE hybris/droid-hal-version-$DEVICE
