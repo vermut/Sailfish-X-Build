@@ -101,3 +101,5 @@ ubu_chrt bash chapter7-ubu2.sh
 sfossdk bash chapter7-sdk3.sh
 
 sfossdk bash chapter8-sdk1.sh
+
+[ -z "$IS_VAGRANT" ] && cp -rf /home/ubuntu/hadk/sfe-f5121-2.1.1.26-my1 /vagrant/
