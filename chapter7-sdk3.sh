@@ -34,9 +34,6 @@ echo all | rpm/dhd/helpers/build_packages.sh --mw=https://github.com/mer-hybris/
 sb2 -t $VENDOR-$DEVICE-$PORT_ARCH -R zypper -n in  --force-resolution bluez5-libs-devel
 echo all | rpm/dhd/helpers/build_packages.sh --mw=https://github.com/mer-hybris/bluetooth-rfkill-event --spec=rpm/bluetooth-rfkill-event-hciattach.spec
 
-git clone --recursive https://github.com/mer-hybris/droid-hal-version-$DEVICE hybris/droid-hal-version-$DEVICE
-rpm/dhd/helpers/build_packages.sh --version
-
 [ -d hybris/droid-hal-version-$DEVICE ] && \
     ( cd hybris/droid-hal-version-$DEVICE ; git pull ) || \
     git clone --recursive https://github.com/mer-hybris/droid-hal-version-$DEVICE hybris/droid-hal-version-$DEVICE

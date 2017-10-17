@@ -33,21 +33,14 @@ sudo chmod a+x /usr/bin/repo
 sudo mkdir -p $ANDROID_ROOT
 sudo chown -R $USER $ANDROID_ROOT
 cd $ANDROID_ROOT
-repo init -u git://github.com/mer-hybris/android.git -b hybris-sony-aosp-6.0.1_r80-20170902 --depth=10
+BRANCH="upgrade-2.1.3-"
+[ "$EDGE" == "bleeding" ] && BRANCH=""
+repo init -u git://github.com/mer-hybris/android.git -b "$BRANCH"hybris-sony-aosp-6.0.1_r80-20170902 -m tagged-manifest.xml
 # Adjust X to your bandwidth capabilities
-repo sync -q --current-branch
+repo sync -q --current-branch --fetch-submodules
 (cd rpm; git submodule init; git submodule update)
 source build/envsetup.sh
-# Please download Sony Xperia X Software binaries for AOSP Marshmallow (Android 6.0.1) from
-# https://developer.sonymobile.com/downloads/tool/software-binaries-for-aosp-marshmallow-6-0-1-loire/
-# and unzip its contents in this directory like this:
-# unzip ~/Downloads/SW_binaries_for_Xperia_AOSP_*.zip
-NONCE=a7c7bf8bfa
-AOSP_FILE=$HOME/.cache/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip
-file $AOSP_FILE | grep -q 'Zip archive' || rm $AOSP_FILE ; wget "https://developer.sonymobile.com/endpoints/cloudfront/create/?nonce=${NONCE}&source=https://dl.developer.sonymobile.com/eula/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire_EULA.html&url=https://dl.developer.sonymobile.com/eula/restricted/SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip" -O $AOSP_FILE
-unzip -o $AOSP_FILE
-
 export USE_CCACHE=1
 lunch aosp_$DEVICE-userdebug
 # Adjust XX to your building capabilities
-[ -f out/target/product/suzu/hybris-boot.img ] || make -j4 hybris-hal
+make -j4 hybris-hal

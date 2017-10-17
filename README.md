@@ -14,10 +14,17 @@ Usage
 ===
 Checkout the the repo and run `vagrant up`. In ~8 hours your build will be ready.
 
-Notes
+Changelog
 ===
-You could run into error while getting SW_binaries_for_Xperia_AOSP_M_MR1_3.10_v12_loire.zip.
-In that case download it from [here](https://developer.sonymobile.com/downloads/tool/software-binaries-for-aosp-marshmallow-6-0-1-loire/) and put it next to Vagrantfile.
+* 2017-10-11: EDGE variable added for cutting and bleeding flavours of the HW adaptation
+* 2017-10-10: Switching to blobless builds, you no longer have to download SW binaries to build things, will only need them to flash the image (we recommend to start your dev environment from scratch at this point)
+* 2017-10-07: Each repo init below now points to the tagged-manifest.xml, which means a complete re-init, re-sync, and rebuild is required to fix the recent mobile data issue.
+* 2017-09-29: Bluetooth is now enabled, you are welcome to test its profiles and fix up as many as you can (ping jusa in IRC for guidance).
+* Browser video playback fixed.
+* Camera video recording fixed.
+* General performance boosted by enabling all 6 CPU cores.
+* 2017-09-26: droid-configs has been updated to fix the nothing provides requested droid-hal-version-f5121 error
+* 2017-09-23: Starting with HADK v2.0.1, using Platform SDK Target version 2.1.1 is now in force (this also fixes GPS on Sailfish X). You can either rebuild from ground up, or remove your target like so:
 
 Expected result
 ===

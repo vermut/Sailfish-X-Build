@@ -1,0 +1,10 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - cp -v * ~/
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - bash build.sh

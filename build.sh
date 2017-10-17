@@ -1,4 +1,5 @@
 #!/bin/bash
+# The only supported build for now
 if [ -d /vagrant ] ; then
     echo Vagrant build detected
     export IS_VAGRANT=1
@@ -14,6 +15,7 @@ export ANDROID_ROOT="$HOME/hadk"
 export VENDOR="sony"
 export DEVICE="f5121"
 export HABUILD_DEVICE="suzu"
+export EDGE=cutting
 # ARCH conflicts with kernel build
 export PORT_ARCH="armv7hl"
 
@@ -52,7 +54,7 @@ alias sfossdk="$PLATFORM_SDK_ROOT/sdks/sfossdk/mer-sdk-chroot"
 alias ubu_chrt="$PLATFORM_SDK_ROOT/sdks/sfossdk/mer-sdk-chroot ubu-chroot -r $PLATFORM_SDK_ROOT/sdks/ubuntu"
 
 echo 4.3 Preparing the Platform SDK
-sfossdk sudo zypper -n in android-tools createrepo zip
+echo c | sfossdk sudo zypper -n in android-tools createrepo zip
 
 echo 4.4.1 Downloading and Unpacking Ubuntu Chroot
 TARBALL=ubuntu-trusty-android-rootfs.tar.bz2
@@ -62,26 +64,21 @@ sfossdk sudo mkdir -p $UBUNTU_CHROOT
 sfossdk "[ -f $UBUNTU_CHROOT/etc/debian_version ] || sudo tar --numeric-owner -xjf $TARBALL -C $UBUNTU_CHROOT"
 
 echo 5. Ubuntu Chroot
-sudo cp -f chapter5-ubu.sh ~/chapter5-ubu.sh || \
-    sudo cp -f /vagrant/chapter5-ubu.sh ~/chapter5-ubu.sh
+[ -f $ANDROID_ROOT/out/target/product/suzu/hybris-boot.img ] || ubu_chrt ~/chapter5-ubu.sh
 
-sudo chmod a+x ~/chapter5-ubu.sh
-ubu_chrt ~/chapter5-ubu.sh
-
-echo 6. SETTING UP SCRATCHBOX2 TARGET == 2.1.1.24
-[ -f ~/.cache/Jolla-2.1.1.24-Sailfish_SDK_Target-armv7hl.tar.bz2 ] || \
-    wget http://releases.sailfishos.org/sdk/latest/targets-1707/Jolla-2.1.1.24-Sailfish_SDK_Target-armv7hl.tar.bz2 -O ~/.cache/Jolla-2.1.1.24-Sailfish_SDK_Target-armv7hl.tar.bz2
-sfossdk sudo zypper -n in -t pattern Mer-SB2-armv7hl
+echo 6. SETTING UP SCRATCHBOX2 TARGET == latest
+[ -f ~/.cache/Jolla-latest-Sailfish_SDK_Target-armv7hl.tar.bz2 ] || \
+    wget http://releases.sailfishos.org/sdk/latest/Jolla-latest-Sailfish_SDK_Target-armv7hl.tar.bz2 -O ~/.cache/Jolla-latest-Sailfish_SDK_Target-armv7hl.tar.bz2
+sfossdk sudo zypper -n in -t pattern jolla-sb2-armv7hl
 
 sfossdk sdk-assistant list | grep -q SailfishOS-armv7hl || \
     sfossdk sdk-assistant -y create SailfishOS-armv7hl \
-    ~/.cache/Jolla-2.1.1.24-Sailfish_SDK_Target-armv7hl.tar.bz2
-    # http://releases.sailfishos.org/sdk/latest/Jolla-latest-Sailfish_SDK_Target-armv7hl.tar.bz2
+    ~/.cache/Jolla-latest-Sailfish_SDK_Target-armv7hl.tar.bz2
 
-sfossdk sdk-manage --use-chroot-as $(id -un) --target --list | grep -q $VENDOR-$DEVICE-$PORT_ARCH || \
-    sfossdk sdk-manage --use-chroot-as $(id -un) --target --install $VENDOR-$DEVICE-$PORT_ARCH Mer-SB2-armv7hl \
-    ~/.cache/Jolla-2.1.1.24-Sailfish_SDK_Target-armv7hl.tar.bz2
-    # http://releases.sailfishos.org/sdk/latest/Jolla-latest-Sailfish_SDK_Target-armv7hl.tar.bz2
+# --use-chroot-as $(id -un)
+sfossdk sdk-manage --target --list | grep -q $VENDOR-$DEVICE-$PORT_ARCH || \
+    sfossdk sdk-manage --target --install $VENDOR-$DEVICE-$PORT_ARCH jolla-sb2-armv7hl \
+    ~/.cache/Jolla-latest-Sailfish_SDK_Target-armv7hl.tar.bz2
 
 cat > sb2_hello_world.c << 'EOF'
 #include <stdlib.h>

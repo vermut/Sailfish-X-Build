@@ -19,7 +19,8 @@ rpm/dhd/helpers/build_packages.sh --configs
 echo 8.5 Building the Image with MIC
 # Set the version of your choosing, latest is strongly preferred
 # (check with "Sailfish OS version" link above)
-RELEASE=2.1.1.26
+# if your sb2 target is 2.1.0, remove it and add 2.1.1 one (check HADK v2.0.1 for link)
+RELEASE=2.1.3.5
 # EXTRA_NAME adds your custom tag. It doesn't support '.' dots in it!
 EXTRA_NAME=-my1
 # Always regenerate patterns as they usually get reset during build process
@@ -28,7 +29,6 @@ EXTRA_NAME=-my1
 hybris/droid-configs/droid-configs-device/helpers/process_patterns.sh
 
 echo but instead of the `sudo mic create fs ...` command, perform the following
-RELEASE=2.1.1.26 # if your sb2 target is 2.1.0, remove it and add 2.1.1 one (check HADK v2.0.1 for link)
 sudo zypper -n in lvm2 atruncate pigz
 sudo ssu ar unbreakmic http://repo.merproject.org/obs/home:/sledge:/branches:/mer-tools:/devel/latest_i486/
 sudo zypper -n  ref unbreakmic
